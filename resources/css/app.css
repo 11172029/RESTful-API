@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root {
+        --brown-900: #3B2F2F;
+        --brown-800: #6B4226;
+        --brown-700: #8B5E3C;
+        --brown-500: #C89F87;
+        --brown-100: #EAE0D5;
+}
+
+@layer components {
+    .movies-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: .9375rem; /* text-sm */
+        color: var(--color-black);
+    }
+
+    .movies-table thead th {
+        background-color: var(--brown-800);
+        color: var(--color-white);
+        text-align: left;
+        padding: .75rem 1rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+    }
+
+    .movies-table tbody td {
+        padding: .625rem 1rem;
+        border-bottom: 1px solid var(--brown-700);
+        vertical-align: middle;
+        color: #3B2F2F;
+    }
+
+    .movies-table tbody tr:nth-child(even) td {
+        background-color: var(--brown-100);
+    }
+
+    .movies-table tbody tr:hover td {
+        background-color: var(--brown-500);
+        color: var(--color-white);
+        transition: background-color .18s ease, color .12s ease;
+    }
+
+    .movies-table caption {
+        caption-side: top;
+        padding: .5rem 0;
+        font-weight: 600;
+        color: var(--brown-900);
+    }
+
+    .btn-brown {
+        display: inline-flex;
+        gap: .5rem;
+        align-items: center;
+        padding: .375rem .625rem;
+        background-color: var(--brown-800);
+        color: var(--color-white);
+        border-radius: .25rem;
+        font-size: .8125rem;
+        border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .btn-brown--ghost {
+        background: transparent;
+        color: var(--brown-800);
+        border: 1px solid var(--brown-700);
+    }
+}
