@@ -14,10 +14,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        // 
-        $data = Movie::all();
-        return MovieResource::collection($data);
-
+        $movies = Movie::all();
+        return view('movies', compact('movies'));
     }
 
     /**

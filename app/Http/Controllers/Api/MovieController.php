@@ -15,9 +15,10 @@ class MovieController extends Controller
      */
     public function index()
     {
-        // $data = Movie::all();
+        $data = Movie::all();
         // return MovieResource::collection($data);
-        return Movie::all()->toResourceCollection(MovieResource::class);
+        // return Movie::all()->toResourceCollection(MovieResource::class);
+        return new MovieResource(true, 'List Data Movies', $data);
     }
 
     /**
@@ -40,14 +41,19 @@ class MovieController extends Controller
         }
 
         $data = Movie::create($request->all());
-        return new MovieResource($data);
+        return new MovieResource(true, 'Data Berhasil Ditambahkan', $data);
     }
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        return Movie::findorFail($id)->toResource(MovieResource::class);
+         $movies = Movie::findOrFail($id);
+        if(!$movies){
+            return response()->json(['message' => 'Data Tidak Ditemukan'], 404);
+        }
+         
+        return $movies->toResource(MovieResource::class);
     }
 
     /**
@@ -71,11 +77,11 @@ class MovieController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors(), 422); 
+            return response()->json($validator->errors(), 422 ); 
         }
 
         $movies->update($request->all());
-        return new MovieResource($movies);
+        return new MovieResource(true, 'Data Berhasil Diupdate', $movies);
     }
 
     /**
@@ -83,6 +89,11 @@ class MovieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $movies = Movie::findOrFail($id);
+        if(!$movies){
+            return response()->json(['message' => 'Movie not found'], 404);
+        }
+        $movies->delete();
+        return response()->json(['message' => 'Data Berhasil Dihapus'], 200);
     }
 }

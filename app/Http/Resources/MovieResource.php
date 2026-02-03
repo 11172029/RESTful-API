@@ -7,6 +7,16 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MovieResource extends JsonResource
 {
+    public $status;
+    public $message;
+
+
+    public function __construct($status, $message, $resource)
+    {
+        parent::__construct($resource);
+        $this->status = $status;
+        $this->message = $message;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -14,15 +24,22 @@ class MovieResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
-            'id' => $this->_id,
-            'title' => $this->original_title,
-            'language' => $this->original_language,
-            'genre' => $this->genre,
-            'popularity' => $this->popularity,
-            'vote_count' => $this->vote_count,
-            'vote_average' => $this->vote_average,
-            'release_date' => $this->release_date,
+            'status' => $this->status,
+            'message' => $this->message,
+
+            'data' => $this->resource,
+            // 'data' => [
+            //         'id' => $this->_id,
+            //         'title' => $this->original_title,
+            //         'language' => $this->original_language,
+            //         'genre' => $this->genre,
+            //         'popularity' => $this->popularity,
+            //         'vote_count' => $this->vote_count,
+            //         'vote_average' => $this->vote_average,
+            //         'release_date' => $this->release_date,
+            // ]
         ];
     }
 }

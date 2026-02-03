@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -30,8 +30,8 @@
                     <tbody>
                         @forelse ($movies ?? [] as $movie)
                             <tr>
-                                <td>{{ $movie->title ?? '—' }}</td>
-                                <td>{{ $movie->year ?? '—' }}</td>
+                                <td>{{ $movie->original_title ?? '—' }}</td>
+                                <td>{{ $movie->release_date ?? '—' }}</td>
                                 <td>{{ $movie->genre ?? '—' }}</td>
                                 <td>
                                     <a href="#" class="btn-brown">Edit</a>
@@ -48,4 +48,4 @@
             </div>
         </main>
     </body>
-</html>
+</html> -->
